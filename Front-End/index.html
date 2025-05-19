@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Produtos</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="sidebar">
+    <ul>
+      <li>Estoque</li>
+      <li>Dashboard</li>
+      <li>Vendas</li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <h1>Produtos Cadastrados</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Produto</th>
+          <th>Preço</th>
+          <th>Estoque</th>
+          <th>Categoria</th>
+          <th>Descrição</th>
+          <th>Ativo</th>
+        </tr>
+      </thead>
+      <tbody id="lista-produtos"></tbody>
+    </table>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
