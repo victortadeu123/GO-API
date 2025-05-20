@@ -7,6 +7,7 @@ body {
     display: flex;
 }
 
+
 .sidebar {
     width: 200px;
     background-color: #1f1f1f;
@@ -15,11 +16,13 @@ body {
     box-shadow: 2px 0 5px rgba(0,0,0,0.5);
 }
 
+
 .sidebar ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
+
 
 .sidebar li {
     padding: 15px 20px;
@@ -27,9 +30,11 @@ body {
     border-bottom: 1px solid #333;
 }
 
+
 .sidebar li:hover {
     background-color: #333;
 }
+
 
 .main-content {
     flex: 1;
@@ -37,10 +42,12 @@ body {
     background-color: #1a1a1a;
 }
 
+
 h1 {
     color: #ffffff;
     margin-bottom: 20px;
 }
+
 
 table {
     width: 100%;
@@ -48,19 +55,83 @@ table {
     background-color: #2a2a2a;
     border-radius: 8px;
     overflow: hidden;
+    margin-bottom: 20px;
 }
+
 
 th, td {
     padding: 12px 15px;
     border-bottom: 1px solid #444;
     text-align: left;
-    color: #fff;
 }
+
 
 th {
     background-color: #333;
+    color: #fff;
 }
+
 
 tr:hover {
     background-color: #3a3a3a;
+}
+
+
+.button-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+#btnCreateProduct {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+#btnUpdateProduct {
+    background-color: #2196F3;
+    color: white;
+}
+
+
+#btnDeleteProduct {
+    background-color: #f44336;
+    color: white;
+}
+
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+
+button:active {
+    transform: translateY(0);
+}
+
+
+#lista-produtos tr.selected {
+    background-color: #4a5568 !important;
+}
+
+
+.material-icons {
+    font-size: 18px;
 }

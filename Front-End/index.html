@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
   <div class="sidebar">
@@ -16,6 +17,7 @@
       <li>Vendas</li>
     </ul>
   </div>
+
 
   <div class="main-content">
     <h1>Produtos Cadastrados</h1>
@@ -33,7 +35,23 @@
       </thead>
       <tbody id="lista-produtos"></tbody>
     </table>
+
+
+    <div class="button-container">
+      <button id="btnCreateProduct">
+        <span class="material-icons">add</span>
+        Criar Produto
+      </button>
+      <button id="btnUpdateProduct">
+        Alterar Produto
+      </button>
+      <button id="btnDeleteProduct">
+        <span class="material-icons">delete</span>
+        Deletar Produto
+      </button>
+    </div>
   </div>
+
 
   <script src="index.js"></script>
 </body>

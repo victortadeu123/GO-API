@@ -37,5 +37,3 @@ func (pu *ProductUsecase) CreateProduct(p *model.Product) error {
 func (pu *ProductUsecase) UpdateProduct(p model.Product) error {
 	return pu.repository.UpdateProduct(p)
 }
-
-
