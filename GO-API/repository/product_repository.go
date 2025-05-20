@@ -39,51 +39,57 @@ func (r *ProductRepository) DeleteProduct(id string) error {
 
 	//get
 func (pr *ProductRepository) GetProducts() ([]model.Product, error) {
-	query := "SELECT id, product_name, price FROM product"
-	rows, err := pr.connection.Query(query)
-	if err != nil {
-		fmt.Println(err)
-		return []model.Product{}, err
-	}
+    query := "SELECT id, product_name, price, estoque, category, description, active FROM product order by id"
+    rows, err := pr.connection.Query(query)
+    if err != nil {
+        fmt.Println(err)
+        return nil, err // Retornar nil em vez de slice vazia para erros
+    }
+    defer rows.Close() // Melhor colocar o defer logo após verificar o erro
 
-	
-	
-	var productList []model.Product
-	var productObj model.Product
+    var products []model.Product
 
-	for rows.Next() {
-		err = rows.Scan(
-			&productObj.ID,
-			&productObj.Name,
-			&productObj.Price)
+    for rows.Next() {
+        var product model.Product
+        err = rows.Scan(
+            &product.ID,
+            &product.Name,
+            &product.Price,
+            &product.Estoque,
+            &product.Categoria,
+            &product.Descricao,
+            &product.Ativo)
+        
+        if err != nil {
+            fmt.Println(err)
+            return nil, err
+        }
 
-		if err != nil {
-			fmt.Println(err)
-			return []model.Product{}, err
-		}
+        products = append(products, product)
+    }
 
-		productList = append(productList, productObj)
-	}
+    // Verificar erros que podem ter ocorrido durante a iteração
+    if err = rows.Err(); err != nil {
+        fmt.Println(err)
+        return nil, err
+    }
 
-	defer rows.Close() 
-
-
-	return productList, nil
+    return products, nil
 }
+
 
 // post
 func (r *ProductRepository) CreateProduct(p *model.Product) error {
-	query := "INSERT INTO product (product_name, price) VALUES ($1, $2) RETURNING id"
-	err := r.connection.QueryRow(query, p.Name, p.Price).Scan(&p.ID)
+	query := "INSERT INTO product (product_name, price, estoque, category, description, active) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id"
+	err := r.connection.QueryRow(query, p.Name, p.Price, p.Estoque, p.Categoria, p.Descricao, p.Ativo).Scan(&p.ID)
 	return err
 }
 
 
 //PUT
-// repository.go
 func (pr *ProductRepository) UpdateProduct(product model.Product) error {
-	query := "UPDATE product SET product_name = $1, price = $2 WHERE id = $3"
-	_, err := pr.connection.Exec(query, product.Name, product.Price, product.ID)
+	query := "UPDATE product SET product_name = $1, price = $2, estoque = $3, category = $4, description = $5, active = $6 WHERE id = $7"
+	_, err := pr.connection.Exec(query, product.Name, product.Price, product.Estoque, product.Categoria, product.Descricao, product.Ativo, product.ID)
 	return err
 }
 

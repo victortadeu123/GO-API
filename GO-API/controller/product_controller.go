@@ -23,14 +23,15 @@ func NewProductController(usecase usecase.ProductUsecase) productController {
     //GET
 
 func (p *productController) GetProducts(ctx *gin.Context) {
+    products, err := p.productUserCase.GetProducts()
+    if err != nil {
+        ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+        return // Importante adicionar return para não continuar
+    }
 
-	products, err := p.productUserCase.GetProducts()
-	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, err)
-	}
-
-	ctx.JSON(http.StatusOK, products)
+    ctx.JSON(http.StatusOK, products)
 }
+
 
 //delete
 
@@ -82,6 +83,9 @@ func (p *productController) CreateProduct(ctx *gin.Context) {
 		"ID":      product.ID,
 		"name":    product.Name,
 		"price":   product.Price,
+		"estoque": product.Estoque,
+		"categoria": product.Categoria,
+		"descrição": product.Descricao,
 	})
 }
 
@@ -109,7 +113,6 @@ func(p *productController)PutProduct(ctx *gin.Context){
 
 
 ctx.JSON(http.StatusCreated, gin.H{
-    "message": "Produto alterado com sucesso", 
     "ID": product.ID,
      "name":    product.Name,
       "price":   product.Price,
